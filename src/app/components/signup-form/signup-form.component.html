@@ -69,14 +69,15 @@
             <label>Confirm Password</label>
             <input 
             type="password"
-            placeholder="Confirm Password" name="confirmPassword"
+            placeholder="Confirm Password" 
+            name="confirmPassword"
             formControlName="confirmPassword"
-            [ngClass]="{ 'is-invalid': signupForm.get('confirmPassword')?.invalid && (signupForm.get('confirmPassword')?.touched || signupForm.get('confirmPassword')?.dirty) }"
+            [ngClass]="{ 'is-invalid': (signupForm.get('confirmPassword')?.invalid && (signupForm.get('confirmPassword')?.touched || signupForm.get('confirmPassword')?.dirty)) || passwordMatch === false }"
              >
-            @if(signupForm.get('confirmPassword')?.invalid && (signupForm.get('confirmPassword')?.touched || signupForm.get('confirmPassword')?.dirty)) {
+            @if((signupForm.get('confirmPassword')?.invalid && (signupForm.get('confirmPassword')?.touched || signupForm.get('confirmPassword')?.dirty)) || passwordMatch === false) {
                 <div class="error-message">
                     <p *ngIf="signupForm.get('confirmPassword')?.errors?.['required']">Confirm Password is required</p>
-                    <p *ngIf="signupForm.get('confirmPassword')?.errors?.['mismatch']">Passwords do not match</p>
+                    <p *ngIf="passwordMatch === false">Passwords do not match</p>
                 </div>
             }
         </div>

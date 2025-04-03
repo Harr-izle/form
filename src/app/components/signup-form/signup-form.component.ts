@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {  FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-signup-form',
@@ -8,8 +9,10 @@ import {  FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors,
   templateUrl: './signup-form.component.html',
   styleUrl: './signup-form.component.sass'
 })
-export class SignupFormComponent implements OnInit {
+export class SignupFormComponent implements OnInit, OnDestroy {
   signupForm!: FormGroup;
+  passwordMatch: boolean | null = null;
+  private passwordSubscription?: Subscription;
 
   constructor(private fb:FormBuilder) { }
 
@@ -21,6 +24,16 @@ export class SignupFormComponent implements OnInit {
       password: ['',[Validators.required,Validators.minLength(8)]],
       confirmPassword:['',[Validators.required]]
     }, { validators: this.passwordMatchValidator });
+
+   
+    this.passwordSubscription = this.signupForm.get('confirmPassword')?.valueChanges.subscribe(value => {
+      const password = this.signupForm.get('password')?.value;
+      this.passwordMatch = value === password;
+    });
+  }
+
+  ngOnDestroy() {
+    this.passwordSubscription?.unsubscribe();
   }
 
   private passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
@@ -32,7 +45,7 @@ export class SignupFormComponent implements OnInit {
   onSubmit(){
     if (this.signupForm.valid) {
       console.log('Form Submitted!', this.signupForm.value);
-      // Perform the signup operation here
+
       this.signupForm.reset();
     } else {
       console.log('Form is invalid');
