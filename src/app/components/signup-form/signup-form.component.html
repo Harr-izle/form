@@ -2,14 +2,14 @@
     <h6>SIGN UP</h6>
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <div class="first-name">
-            <label>First Name</label>
-            <input
-             type="text"
-              placeholder="First Name" 
-              name="firstName"
-              formControlName="firstName"
-                [ngClass]="{ 'is-invalid': signupForm.get('firstName')?.invalid && (signupForm.get('firstName')?.touched || signupForm.get('firstName')?.dirty) }"                
-            >
+            <app-input
+                type="text" 
+                placeholder="First Name" 
+                name="firstName"
+                formControlName="firstName"
+                [ngClass]="{ 'is-invalid': signupForm.get('firstName')?.invalid && (signupForm.get('firstName')?.touched || signupForm.get('firstName')?.dirty) }"
+                [label]="'First Name'"
+            />
            @if(signupForm.get('firstName')?.invalid && (signupForm.get('firstName')?.touched || signupForm.get('firstName')?.dirty)) {
                 <div class="error-message">
                     <p *ngIf="signupForm.get('firstName')?.errors?.['required']">First Name is required</p>
@@ -17,14 +17,14 @@
             }
         </div>
         <div class="last-name">
-            <label>Last Name</label>
-            <input 
-            type="text" 
-            placeholder="Last Name" 
-            name="lastName"
-            formControlName="lastName"
-            [ngClass]="{ 'is-invalid': signupForm.get('lastName')?.invalid && (signupForm.get('lastName')?.touched || signupForm.get('lastName')?.dirty) }"
-            >
+            <app-input
+                type="text" 
+                placeholder="Last Name" 
+                name="lastName"
+                formControlName="lastName"
+                [ngClass]="{ 'is-invalid': signupForm.get('lastName')?.invalid && (signupForm.get('lastName')?.touched || signupForm.get('lastName')?.dirty) }"
+                [label]="'Last Name'"
+            />
             @if(signupForm.get('lastName')?.invalid && (signupForm.get('lastName')?.touched || signupForm.get('lastName')?.dirty)) {
                 <div class="error-message">
                     <p *ngIf="signupForm.get('lastName')?.errors?.['required']">Last Name is required</p>
@@ -32,14 +32,14 @@
             }
         </div>
         <div class="email">
-            <label>Email</label>
-            <input 
-            type="email" 
-            placeholder="Email" 
-            name="email"
-            formControlName="email"
-            [ngClass]="{ 'is-invalid': signupForm.get('email')?.invalid && (signupForm.get('email')?.touched || signupForm.get('email')?.dirty) }"
-            > 
+            <app-input
+                type="email" 
+                placeholder="Email" 
+                name="email"
+                formControlName="email"
+                [ngClass]="{ 'is-invalid': signupForm.get('email')?.invalid && (signupForm.get('email')?.touched || signupForm.get('email')?.dirty) }"
+                [label]="'Email'"
+            />
             @if(signupForm.get('email')?.invalid && (signupForm.get('email')?.touched || signupForm.get('email')?.dirty)) {
                 <div class="error-message">
                     <p *ngIf="signupForm.get('email')?.errors?.['required']">Email is required</p>
@@ -50,14 +50,14 @@
 
         </div>
         <div class="password">
-            <label>Password</label>
-            <input 
-            type="password" 
-            placeholder="Password" 
-            name="password"
-            formControlName="password"
-            [ngClass]="{ 'is-invalid': signupForm.get('password')?.invalid && (signupForm.get('password')?.touched || signupForm.get('password')?.dirty) }"
-            >
+            <app-input
+                type="password" 
+                placeholder="Password" 
+                name="password"
+                formControlName="password"
+                [ngClass]="{ 'is-invalid': signupForm.get('password')?.invalid && (signupForm.get('password')?.touched || signupForm.get('password')?.dirty) }"
+                [label]="'Password'"
+            />
             @if(signupForm.get('password')?.invalid && (signupForm.get('password')?.touched || signupForm.get('password')?.dirty)) {
                 <div class="error-message">
                     <p *ngIf="signupForm.get('password')?.errors?.['required']">Password is required</p>
@@ -66,14 +66,15 @@
             }
         </div>
         <div class="confirm-password">
-            <label>Confirm Password</label>
-            <input 
-            type="password"
-            placeholder="Confirm Password" 
-            name="confirmPassword"
-            formControlName="confirmPassword"
-            [ngClass]="{ 'is-invalid': (signupForm.get('confirmPassword')?.invalid && (signupForm.get('confirmPassword')?.touched || signupForm.get('confirmPassword')?.dirty)) || passwordMatch === false }"
-             >
+            <app-input
+                type="password" 
+                placeholder="Confirm Password" 
+                name="confirmPassword"
+                formControlName="confirmPassword"
+                [ngClass]="{ 'is-invalid': (signupForm.get('confirmPassword')?.invalid && (signupForm.get('confirmPassword')?.touched || signupForm.get('confirmPassword')?.dirty)) || passwordMatch === false }"
+                [label]="'Confirm Password'"
+            />
+    
             @if((signupForm.get('confirmPassword')?.invalid && (signupForm.get('confirmPassword')?.touched || signupForm.get('confirmPassword')?.dirty)) || passwordMatch === false) {
                 <div class="error-message">
                     <p *ngIf="signupForm.get('confirmPassword')?.errors?.['required']">Confirm Password is required</p>
