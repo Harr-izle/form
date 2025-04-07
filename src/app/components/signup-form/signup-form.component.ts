@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {  FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { InputComponent } from "../../shared/input/input.component";
 
 @Component({
   selector: 'app-signup-form',
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, InputComponent],
   templateUrl: './signup-form.component.html',
   styleUrl: './signup-form.component.sass'
 })
