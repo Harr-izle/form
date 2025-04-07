@@ -1,0 +1,11 @@
+<div class="input">
+    <label>{{label}}</label>
+    <input
+        [type]="type"
+        [placeholder]="placeholder"
+        [ngClass]="{ 'error': error }"
+        [attr.aria-label]="label"
+        [(ngModel)]="value"
+        
+    > 
+</div>

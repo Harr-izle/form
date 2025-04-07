@@ -1,0 +1,30 @@
+.input
+    display: flex
+    flex-direction: column
+    gap: 0.5rem
+    width: 100% 
+    
+    label
+     font-size: 1rem
+     font-weight: 500
+     color: #333
+     margin-bottom: 0.5rem
+
+    input
+      padding: 0.5rem 1rem
+      border: 1px solid #ccc
+      border-radius: 0.25rem
+      font-size: 1rem
+
+      &:focus
+        border-color: #007bff
+        outline: none
+
+      &.is-invalid
+        border-color: red    
+
+      &::placeholder
+        color: #999
+        font-size: 0.9rem
+        font-style: italic
+        font-weight: 400
