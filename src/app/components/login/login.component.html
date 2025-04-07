@@ -1,0 +1,48 @@
+<div class="login">
+    <h6>Login</h6>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+       <div class="email">
+        <app-input
+        type="email" 
+        placeholder="Email" 
+        name="email"
+        formControlName="email"
+        [ngClass]="{ 'is-invalid': loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty) }"
+        [label]="'Email'"
+    />
+
+    @if(loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)) {
+        <div class="error-message">
+            <p *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</p>
+            <p *ngIf="loginForm.get('email')?.errors?.['email']">Enter a valid email</p>
+        </div>
+        
+    }
+       </div>
+
+       <div class="password">
+        <app-input
+        type="password" 
+        placeholder="Password" 
+        name="password"
+        formControlName="password"
+        [ngClass]="{ 'is-invalid': loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty) }"
+        [label]="'Password'"
+    />
+    @if(loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)) {
+        <div class="error-message">
+            <p *ngIf="loginForm.get('password')?.errors?.['required']">Password is incorrect</p>
+            <p *ngIf="loginForm.get('password')?.errors?.['password']">Password is incorrect</p>
+        </div>
+        
+    }
+       </div>
+         <div class="login-button">
+          <button type="submit" [disabled]="loginForm.invalid">Login</button>
+            </div>
+            <div class="forgot">
+                <a>Forgot Password?</a>
+            </div>
+        
+    </form>
+</div>

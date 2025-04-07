@@ -8,5 +8,9 @@ export const routes: Routes = [
     {
         path: 'registration',
         loadComponent: () => import('./components/signup-form/signup-form.component').then(m => m.SignupFormComponent)
+    },
+    {
+        path: 'login',
+        loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent)
     }
 ];
